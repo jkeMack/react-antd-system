@@ -1,0 +1,42 @@
+@import "./styles";
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  // site layout header
+  .layout-header {
+
+  }
+
+  // site layout body
+  .layout-body {
+    flex: 1;
+    display: flex;
+
+    // the sider contain menus
+    .layout-sider {
+
+    }
+
+    // the layout body right
+    .layout-body-container {
+      flex: 1;
+
+      // the global breadcrumb container
+      .layout-breadcrumb {
+        padding-left: var(--normal-gutter--unit);
+        height: 40px;
+        line-height: 40px;
+        background-color: var(--color-panel-background);
+      }
+
+      // the page view box
+      .layout-page-container {
+        padding: var(--normal-gutter--unit);
+      }
+    }
+  }
+}

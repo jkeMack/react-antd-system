@@ -3,26 +3,29 @@ import {Layout, Menu, Breadcrumb} from 'antd';
 import {UserOutlined, LaptopOutlined, NotificationOutlined} from '@ant-design/icons';
 import LHeader from './components/Header';
 import PageRouter from './router/page_router';
-import './App.scss';
+import './App.less';
 
 const {SubMenu} = Menu;
 const {Header, Content, Sider} = Layout;
 
 function App() {
     return (
-        <Layout className="App">
-            <Header className="header">
+        <Layout className="App theme-light">
+            <Header className="layout-header">
                 <LHeader/>
             </Header>
-            <Layout>
-                <Sider width={200} className="site-layout-background">
+            <Layout className="layout-body">
+                <Sider width={200} className="layout-sider">
                     <Menu
                         mode="inline"
-                        defaultSelectedKeys={['1']}
+                        defaultSelectedKeys={['5']}
                         defaultOpenKeys={['sub1']}
                         style={{height: '100%', borderRight: 0}}
                     >
-                        <SubMenu key="sub1" title="系统管理" icon={<UserOutlined />}>
+                        <SubMenu key="sub1" title="组件样式" icon={<LaptopOutlined />}>
+                            <Menu.Item key="5">UI组件</Menu.Item>
+                        </SubMenu>
+                        <SubMenu key="sub2" title="系统管理" icon={<UserOutlined />}>
                             <Menu.Item key="1">用户管理</Menu.Item>
                             <Menu.Item key="2">角色管理</Menu.Item>
                             <Menu.Item key="3">权限管理</Menu.Item>
@@ -30,19 +33,14 @@ function App() {
                         </SubMenu>
                     </Menu>
                 </Sider>
-                <Layout style={{padding: '0 24px 24px'}}>
-                    <Breadcrumb style={{margin: '16px 0'}}>
+                <Layout className="layout-body-container">
+                    <Breadcrumb className="layout-breadcrumb">
                         <Breadcrumb.Item>Home</Breadcrumb.Item>
                         <Breadcrumb.Item>List</Breadcrumb.Item>
                         <Breadcrumb.Item>App</Breadcrumb.Item>
                     </Breadcrumb>
                     <Content
-                        className="site-layout-background"
-                        style={{
-                            padding: 24,
-                            margin: 0,
-                            minHeight: 280,
-                        }}
+                        className="layout-page-container"
                     >
                         <PageRouter/>
                     </Content>

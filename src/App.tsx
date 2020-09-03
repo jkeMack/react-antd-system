@@ -10,7 +10,7 @@ const {Header, Content, Sider} = Layout;
 
 function App() {
     return (
-        <Layout className="App theme-light">
+        <Layout className="App">
             <Header className="layout-header">
                 <LHeader/>
             </Header>

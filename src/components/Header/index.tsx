@@ -1,16 +1,16 @@
 import React from 'react';
-import {Menu, Layout} from 'antd';
+import {Space, Avatar} from 'antd';
+import {SearchOutlined, MessageOutlined} from '@ant-design/icons';
 
 function LHeader() {
     return (
-        <Layout>
-            <div className="logo"/>
-            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-                <Menu.Item key="1">nav 1</Menu.Item>
-                <Menu.Item key="2">nav 2</Menu.Item>
-                <Menu.Item key="3">nav 3</Menu.Item>
-            </Menu>
-        </Layout>
+        <Space size="large">
+             <SearchOutlined/>
+             <MessageOutlined />
+             <Avatar size="large" gap={2}>
+                user
+            </Avatar>
+        </Space>
     );
 }
 

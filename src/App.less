@@ -1,10 +1,26 @@
-@import '~antd/dist/antd.less';
-@import "./styles";
 .App {
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
+
+  // control the app setting drawer's show and hidden
+  .app-setting-toggle{
+    position: fixed;
+    top: 200px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 5px 0 0 5px;
+    font-size: 20px;
+    color: #fff;
+    background-color: @primary-color;
+    cursor: pointer;
+    z-index: 1001;
+    transition: all .2s linear;
+  }
 
   // site layout header
   .layout-header {
@@ -21,7 +37,8 @@
 
     // the sider contain menus
     .layout-sider {
-
+      height: 100%;
+      overflow-y: auto;
     }
 
     // the layout body right
@@ -30,15 +47,36 @@
 
       // the global breadcrumb container
       .layout-breadcrumb {
-        padding-left: var(--normal-gutter--unit);
+        padding-left: @normal-gutter;
         height: 40px;
         line-height: 40px;
       }
 
       // the page view box
       .layout-page-container {
-        padding: var(--normal-gutter--unit);
+        padding: @normal-gutter;
       }
+    }
+  }
+}
+
+
+.ant-setting-drawer-content{
+  .ant-setting-drawer-title{
+    color: @text-color;
+  }
+
+  .theme-color-content{
+    display: flex;
+    .theme-color-block{
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+      font-weight: 700;
+      text-align: center;
+      border-radius: 2px;
+      cursor: pointer;
+      color: #fff;
     }
   }
 }

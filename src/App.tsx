@@ -3,7 +3,6 @@ import {Layout, Menu, Breadcrumb, Drawer, Tooltip} from 'antd';
 import {
     UserOutlined,
     LaptopOutlined,
-    NotificationOutlined,
     SettingOutlined,
     CloseOutlined,
     CheckOutlined

@@ -10,6 +10,7 @@ import {
 } from '@ant-design/icons';
 import LHeader from './components/Header';
 import PageRouter from './router/page_router';
+import './App.less';
 
 const {SubMenu} = Menu;
 const {Header, Content, Sider} = Layout;

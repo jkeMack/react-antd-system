@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.less';
 import Router from './router';
 import * as serviceWorker from './serviceWorker';
+import './styles/antd.css';
 
 ReactDOM.render(
     <Router/>,

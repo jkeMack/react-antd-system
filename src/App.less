@@ -16,7 +16,7 @@
     border-radius: 5px 0 0 5px;
     font-size: 20px;
     color: #fff;
-    background-color: @primary-color;
+    background-color: var(--primary-color);
     cursor: pointer;
     z-index: 1001;
     transition: all .2s linear;
@@ -24,7 +24,7 @@
 
   // site layout header
   .layout-header {
-    color: @primary-color;
+    color: var(--primary-color);
     display: flex;
     justify-content: flex-end;
     font-size: 18px;
@@ -47,14 +47,14 @@
 
       // the global breadcrumb container
       .layout-breadcrumb {
-        padding-left: @normal-gutter;
+        padding-left: var(--normal-gutter);
         height: 40px;
         line-height: 40px;
       }
 
       // the page view box
       .layout-page-container {
-        padding: @normal-gutter;
+        padding: var(--normal-gutter);
       }
     }
   }
@@ -63,7 +63,7 @@
 
 .ant-setting-drawer-content{
   .ant-setting-drawer-title{
-    color: @text-color;
+    color: var(--text-color);
   }
 
   .theme-color-content{

@@ -7,6 +7,7 @@ import {
     CloseOutlined,
     CheckOutlined
 } from '@ant-design/icons';
+import less from 'less';
 import LHeader from './components/Header';
 import PageRouter from './router/page_router';
 import './App.less';
@@ -32,7 +33,7 @@ function App() {
     const themeBlockList = themeList.map((item, index) => {
         return <Tooltip title={item.title} key={index}>
             <div className="theme-color-block" style={{backgroundColor: item.color}}
-                 onClick={() => setThemeIndex(index)}>
+                 onClick={() => chooseTheme(index)}>
                 {index === themeIndex ? <CheckOutlined/> : ''}
             </div>
         </Tooltip>
@@ -40,6 +41,15 @@ function App() {
 
     const toggleSettingDrawer = () => {
         setVisible(!visible);
+    };
+
+    const chooseTheme = (index:number)=>{
+        less.modifyVars({
+            '@primary-color': themeList[index].color,
+        }).then(res=>{
+            console.log('修改主题成功！')
+        });
+        setThemeIndex(index);
     };
 
     return (

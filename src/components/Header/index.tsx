@@ -9,7 +9,7 @@ function LHeader() {
                 <SearchOutlined/>
             </Popover>
             <Popover content="资讯消息">
-                <MessageOutlined/>
+                <MessageOutlined/> 
             </Popover>
             <Avatar size="large" gap={2}>
                 user

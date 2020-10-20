@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Layout, Menu, Breadcrumb, Drawer, Tooltip } from 'antd';
+import React, {useState, useEffect} from 'react';
+import {Layout, Menu, Breadcrumb, Drawer, Tooltip} from 'antd';
 import {
     UserOutlined,
     LaptopOutlined,
@@ -7,33 +7,63 @@ import {
     CloseOutlined,
     CheckOutlined
 } from '@ant-design/icons';
+import { useHistory } from 'react-router-dom';
+
 import LHeader from './components/Header';
 import PageRouter from './router/page_router';
 import './App.less';
 
-const { SubMenu } = Menu;
-const { Header, Content, Sider } = Layout;
+const {SubMenu} = Menu;
+const {Header, Content, Sider} = Layout;
 
 function App() {
     const [visible, setVisible] = useState(false);
     const [themeIndex, setThemeIndex] = useState(0);
 
     const themeList = [
-        { title: '拂晓蓝(默认)', theme: 'theme-daybreak', color: 'rgb(24, 144, 255)' },
-        { title: '薄暮', theme: 'theme-dust', color: 'rgb(245, 34, 45)' },
-        { title: '火山', theme: 'theme-volcano', color: 'rgb(250, 84, 28)' },
-        { title: '日暮', theme: 'theme-sunset', color: 'rgb(250, 173, 20)' },
-        { title: '明青', theme: 'theme-cyan', color: 'rgb(19, 194, 194)' },
-        { title: '极光绿', theme: 'theme-green', color: 'rgb(82, 196, 26)' },
-        { title: '极客蓝', theme: 'theme-geekblue', color: 'rgb(47, 84, 235)' },
-        { title: '酱紫', theme: 'theme-purple', color: 'rgb(114, 46, 209)' },
+        {title: '拂晓蓝(默认)', theme: 'theme-daybreak', color: 'rgb(24, 144, 255)'},
+        {title: '薄暮', theme: 'theme-dust', color: 'rgb(245, 34, 45)'},
+        {title: '火山', theme: 'theme-volcano', color: 'rgb(250, 84, 28)'},
+        {title: '日暮', theme: 'theme-sunset', color: 'rgb(250, 173, 20)'},
+        {title: '明青', theme: 'theme-cyan', color: 'rgb(19, 194, 194)'},
+        {title: '极光绿', theme: 'theme-green', color: 'rgb(82, 196, 26)'},
+        {title: '极客蓝', theme: 'theme-geekblue', color: 'rgb(47, 84, 235)'},
+        {title: '酱紫', theme: 'theme-purple', color: 'rgb(114, 46, 209)'},
     ];
+
+    const menus = [
+        {
+            key: 'demo', name: '组件样式', icon: <LaptopOutlined/>, url: '', children: [
+                {key: 'ui', name: 'UI组件', url: '/home/ui-demo'}
+            ]
+        },
+        {
+            key: 'system', name: '系统管理', icon: <UserOutlined/>, url: '', children: [
+                {key: 'user', name: '用户管理', url: '/home/user'},
+                {key: 'role', name: '角色管理', url: '/home/role'},
+                {key: 'menu', name: '菜单管理', url: '/home/menu'},
+            ]
+        },
+    ];
+
+    const menusTemplate = menus.map(item => {
+        return <SubMenu key={item.key} title={item.name} icon={item.icon}>
+            {item.children.map(menu => {
+                return <Menu.Item key={menu.key} onClick={() => goPage(menu.url)}>{menu.name}</Menu.Item>;
+            })}
+        </SubMenu>
+    });
+
+    let history = useHistory();
+    const goPage = (url: string) => {
+        history.push(url);
+    };
 
     const themeBlockList = themeList.map((item, index) => {
         return <Tooltip title={item.title} key={index}>
-            <div className="theme-color-block" style={{ backgroundColor: item.color }}
-                onClick={() => setTheme(index)}>
-                {index === themeIndex ? <CheckOutlined /> : ''}
+            <div className="theme-color-block" style={{backgroundColor: item.color}}
+                 onClick={() => setTheme(index)}>
+                {index === themeIndex ? <CheckOutlined/> : ''}
             </div>
         </Tooltip>
     });
@@ -51,31 +81,23 @@ function App() {
 
     useEffect(() => {
         setTheme(0);
-    });
+    },[]);
 
     return (
         <Layout className='App'>
             <Header className="layout-header">
-                <LHeader />
+                <LHeader/>
             </Header>
             <Layout className="layout-body">
                 <Sider width={200} className="layout-sider">
                     <Menu
                         theme="dark"
                         mode="inline"
-                        defaultSelectedKeys={['5']}
-                        defaultOpenKeys={['sub1']}
-                        style={{ height: '100%', borderRight: 0 }}
+                        defaultSelectedKeys={['ui']}
+                        defaultOpenKeys={['demo']}
+                        style={{height: '100%', borderRight: 0}}
                     >
-                        <SubMenu key="sub1" title="组件样式" icon={<LaptopOutlined />}>
-                            <Menu.Item key="5">UI组件</Menu.Item>
-                        </SubMenu>
-                        <SubMenu key="sub2" title="系统管理" icon={<UserOutlined />}>
-                            <Menu.Item key="1">用户管理</Menu.Item>
-                            <Menu.Item key="2">角色管理</Menu.Item>
-                            <Menu.Item key="3">权限管理</Menu.Item>
-                            <Menu.Item key="4">菜单管理</Menu.Item>
-                        </SubMenu>
+                        {menusTemplate}
                     </Menu>
                 </Sider>
                 <Layout className="layout-body-container">
@@ -87,13 +109,13 @@ function App() {
                     <Content
                         className="layout-page-container"
                     >
-                        <PageRouter />
+                        <PageRouter/>
                     </Content>
                 </Layout>
             </Layout>
 
-            <div className="app-setting-toggle" style={{ right: visible ? '300px' : '0' }} onClick={toggleSettingDrawer}>
-                {visible ? <CloseOutlined /> : <SettingOutlined />}
+            <div className="app-setting-toggle" style={{right: visible ? '300px' : '0'}} onClick={toggleSettingDrawer}>
+                {visible ? <CloseOutlined/> : <SettingOutlined/>}
             </div>
 
             <Drawer

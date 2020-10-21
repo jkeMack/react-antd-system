@@ -8,15 +8,15 @@ import {
     CheckOutlined
 } from '@ant-design/icons';
 import { useHistory } from 'react-router-dom';
+import { renderRoutes } from 'react-router-config';
 
 import LHeader from './components/Header';
-import PageRouter from './router/page_router';
 import './App.less';
 
 const {SubMenu} = Menu;
 const {Header, Content, Sider} = Layout;
 
-function App() {
+function App(props:any) {
     const [visible, setVisible] = useState(false);
     const [themeIndex, setThemeIndex] = useState(0);
 
@@ -34,12 +34,12 @@ function App() {
     const menus = [
         {
             key: 'demo', name: '组件样式', icon: <LaptopOutlined/>, url: '', children: [
-                {key: 'ui', name: 'UI组件', url: '/home/ui-demo'}
+                {key: 'ui', name: 'UI组件', url: '/uiDemo'}
             ]
         },
         {
             key: 'system', name: '系统管理', icon: <UserOutlined/>, url: '', children: [
-                {key: 'user', name: '用户管理', url: '/home/user'},
+                {key: 'user', name: '用户管理', url: '/userManage'},
                 {key: 'role', name: '角色管理', url: '/home/role'},
                 {key: 'menu', name: '菜单管理', url: '/home/menu'},
             ]
@@ -83,6 +83,12 @@ function App() {
         setTheme(0);
     },[]);
 
+    useEffect(() => {
+        if(props.location.pathname === '/'){
+            history.push('/uiDemo');
+        }
+    }, [props.location.pathname])
+
     return (
         <Layout className='App'>
             <Header className="layout-header">
@@ -109,7 +115,7 @@ function App() {
                     <Content
                         className="layout-page-container"
                     >
-                        <PageRouter/>
+                        {renderRoutes(props.route.routes)}
                     </Content>
                 </Layout>
             </Layout>

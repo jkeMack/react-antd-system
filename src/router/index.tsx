@@ -1,16 +1,12 @@
 import React from 'react';
-import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
-import App from '../App';
+import { BrowserRouter} from 'react-router-dom';
+import { renderRoutes } from 'react-router-config';
+import routes from './config';
 
 function Router() {
     return (
         <BrowserRouter>
-            <div className="app">
-                <Switch>
-                    <Route path="/home" component={App}/>
-                    <Redirect to="/home"/>
-                </Switch>
-            </div>
+            {renderRoutes(routes)}
         </BrowserRouter>
     );
 }

@@ -1,54 +1,65 @@
 import React from 'react';
 import {
-    Table, Tag, Space
+    Table, Tag, Space, Button
 } from 'antd';
 
 function UserManage() {
 
     const columns = [
         {
-            title: 'Name',
+            title: '用户名',
             dataIndex: 'name',
             key: 'name',
             render: (text:string) => <a>{text}</a>,
         },
         {
-            title: 'Age',
-            dataIndex: 'age',
-            key: 'age',
+            title: '昵称',
+            dataIndex: 'nickName',
+            key: 'nickName',
         },
         {
-            title: 'Address',
-            dataIndex: 'address',
-            key: 'address',
+            title: '角色名称',
+            dataIndex: 'roleName',
+            key: 'roleName',
         },
         {
-            title: 'Tags',
-            key: 'tags',
-            dataIndex: 'tags',
-            render: (tags:Array<any>) => (
-                <>
-                    {tags.map(tag => {
-                        let color = tag.length > 5 ? 'geekblue' : 'green';
-                        if (tag === 'loser') {
-                            color = 'volcano';
-                        }
-                        return (
-                            <Tag color={color} key={tag}>
-                                {tag.toUpperCase()}
-                            </Tag>
-                        );
-                    })}
-                </>
-            ),
+            title: '手机号',
+            dataIndex: 'telephone',
+            key: 'telephone',
         },
         {
-            title: 'Action',
+            title: '邮箱地址',
+            dataIndex: 'email',
+            key: 'email',
+        },
+        {
+            title: '性别',
+            dataIndex: 'sex',
+            key: 'sex',
+        },
+        {
+            title: '启用状态',
+            dataIndex: 'status',
+            key: 'status',
+        },
+        {
+            title: '登录状态',
+            dataIndex: 'loginStatus',
+            key: 'loginStatus',
+        },
+        {
+            title: '最新登录时间',
+            dataIndex: 'recentLoginTime',
+            key: 'recentLoginTime',
+        },
+        {
+            title: '操作',
             key: 'action',
-            render: (text:string, record:any) => (
-                <Space size="middle">
-                    <a>Invite {record.name}</a>
-                    <a>Delete</a>
+            width: 100,
+            render: () => (
+                <Space size="small">
+                    <Button type="primary">编辑</Button>
+                    <Button danger>删除</Button>
                 </Space>
             ),
         },
@@ -56,26 +67,16 @@ function UserManage() {
 
     const data = [
         {
-            key: '1',
-            name: 'John Brown',
-            age: 32,
-            address: 'New York No. 1 Lake Park',
-            tags: ['nice', 'developer'],
-        },
-        {
-            key: '2',
-            name: 'Jim Green',
-            age: 42,
-            address: 'London No. 1 Lake Park',
-            tags: ['loser'],
-        },
-        {
-            key: '3',
-            name: 'Joe Black',
-            age: 32,
-            address: 'Sidney No. 1 Lake Park',
-            tags: ['cool', 'teacher'],
-        },
+            name: 'admin',
+            nickName: '超级管理员',
+            roleName: '管理员',
+            telephone: '1888888888',
+            email: '66666@qq.com',
+            sex: '男',
+            status: '启用',
+            loginStatus: '在线',
+            recentLoginTime: '2020-10-22 09:09:10'
+        }
     ];
 
     return (

@@ -1,6 +1,7 @@
 import App from '../App';
 import UiDemo from '../pages/UiDemo';
 import UserManage from '../pages/UserManage';
+import RoleManage from '../pages/RoleManage';
 
 const routes = [{
     path: '/',
@@ -18,6 +19,10 @@ const routes = [{
         {
             path: '/userManage',
             component: UserManage
+        },
+        {
+            path: '/roleManage',
+            component: RoleManage
         },
     ],
 }];
